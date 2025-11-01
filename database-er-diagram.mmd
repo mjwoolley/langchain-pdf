@@ -1,0 +1,41 @@
+erDiagram
+    User ||--o{ Pdf : owns
+    User ||--o{ Conversation : creates
+    Pdf ||--o{ Conversation : "discussed in"
+    Conversation ||--o{ Message : contains
+
+    User {
+        string id PK
+        string email UK
+        string password
+        datetime created_on
+        datetime updated_on
+    }
+
+    Pdf {
+        string id PK
+        string name
+        int user_id FK
+        datetime created_on
+        datetime updated_on
+    }
+
+    Conversation {
+        string id PK
+        datetime created_on
+        string retriever
+        string memory
+        string llm
+        int pdf_id FK
+        int user_id FK
+        datetime updated_on
+    }
+
+    Message {
+        string id PK
+        datetime created_on
+        string role
+        string content
+        string conversation_id FK
+        datetime updated_on
+    }
